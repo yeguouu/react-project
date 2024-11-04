@@ -1,0 +1,49 @@
+.father{
+    width: 400px;
+    background-color:#252528;
+    color: #ffffff;
+    font-family:Montserrat;
+    border-radius: 20px;
+    img{
+      width: 400px;
+      height: 210px;
+      border-radius: 20px;
+    }
+    .bottom{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px;
+      .title{
+        font-size: 36px;
+      }
+      .text{
+        font-size: 16px;
+      }
+      .button{
+        margin-top: 20px;
+          width: 352px;
+          height: 58px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #18181A;
+          cursor: pointer;
+          margin-top: 10px;
+        
+      }
+    }
+  }
+  .button{
+    color: #ffffff;
+    margin-top: 20px;
+      width: 352px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #18181A;
+      cursor: pointer;
+      margin-top: 10px;
+    
+  }
