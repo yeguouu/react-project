@@ -9,103 +9,91 @@ type user =
     age:1,
     score:1,
   }
-
-function NameButton({onClick}) {
+  function AddButton({onClick}) {
+    return (
+      <div>
+        <div className="button" onClick={onClick}>+</div>
+      </div>
+    );
+  }
+  function DeleteButton({onClick}) {
+    return (
+      <div>
+        <div className="button" onClick={onClick}>-</div>
+      </div>
+    );
+  }
+  function EditButton({onClick}) {
+    return (
+      <div>
+        <div className="button" onClick={onClick}>修改</div>
+      </div>
+    );
+  }
+function QueryButton({onClick}) {
   return (
     <div>
       <div className="button" onClick={onClick}>信息</div>
     </div>
   );
 }
-function AddButton({onClick}) {
-  return (
-    <div>
-      <div className="button" onClick={onClick}>+1</div>
-    </div>
-  );
-}
-function ReduceButton({onClick}) {
-  return (
-    <div>
-      <div className="button" onClick={onClick}>-1</div>
-    </div>
-  );
-}
+
 
 export default function Home(){
-  const [userList,setUserList]=useState([] as Array<user>);
+  const [userinfo,setUserInfo]=useState({});
 
-  async function handleClick (){
-    let res = await fetch('http://localhost:3000/users/user',{
-      method:"GET",
-    })
-    res = await res.json();
-     let userList = res.map(i=>{
-      console.log('i',i);
-      return {
-        name:i.name,
-        age:i.age,
-        score:i.score,
-      }
-    })
-
-    setUserList(
-      userList
-    )
-  }
-  async function handleClickAdd (){
+  async function Add (){
     let res = await fetch('http://localhost:3000/users/user/add',{
       method:"GET",
     })
-    res = await res.json();
-     let userList = res.map(i=>{
-      console.log('i',i);
-      return {
-        name:i.name,
-        age:i.age,
-        score:i.score,
-      }
-    })
+    console.log("添加成功");
+    
+    
 
-    setUserList(
-      userList
-    )
   }
-  async function handleClickReduce (){
-    let res = await fetch('http://localhost:3000/users/user/reduce',{
+  async function Delete (){
+    let res = await fetch('http://localhost:3000/users/user/delete',{
+      method:"GET",
+    })
+    console.log("删除成功");
+
+  }
+  async function Edit (){
+    let res = await fetch('http://localhost:3000/users/user/edit',{
+      method:"GET",
+    })
+    console.log("修改成功");
+    
+  }
+  async function Query (){
+    let res = await fetch('http://localhost:3000/users/user/query',{
       method:"GET",
     })
     res = await res.json();
-     let userList = res.map(i=>{
-      console.log('i',i);
-      return {
-        name:i.name,
-        age:i.age,
-        score:i.score,
-      }
-    })
+     let userinfo = res
 
-    setUserList(
-      userList
+     setUserInfo(
+      userinfo
     )
   }
   
   return(
     <div>
-      {
-        userList.map(i=>{
-          return (
+
+       
+
             <div>
-              <div>姓名：{i.name}</div>
-              <div>年龄：{i.age}</div>
-              <div>分数：{i.score}</div>
+              <div>姓名：{userinfo.name}</div>
+              <div>年龄：{userinfo.age}</div>
+              <div>分数：{userinfo.score}</div>
             </div>
-          )
-        })
-      } 
-      <NameButton onClick={handleClick}></NameButton>
-      <AddButton onClick={handleClickAdd}></AddButton>
-      <ReduceButton onClick={handleClickReduce}></ReduceButton>
+
+
+
+      <QueryButton onClick={Query}></QueryButton>
+      <AddButton onClick={Add}></AddButton>
+      <DeleteButton onClick={Delete}></DeleteButton>
+      <EditButton onClick={Edit}></EditButton>
     </div>
   )
 }
