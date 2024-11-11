@@ -46,24 +46,20 @@ export default function Home(){
     let res = await fetch('http://localhost:3000/users/user/add',{
       method:"GET",
     })
-    console.log("添加成功");
-    
-    
-
+    res = await res.json();
+    console.log("添加成功",res);
   }
   async function Delete (){
     let res = await fetch('http://localhost:3000/users/user/delete',{
       method:"GET",
     })
-    console.log("删除成功");
-
+    console.log("删除成功",res);
   }
   async function Edit (){
     let res = await fetch('http://localhost:3000/users/user/edit',{
       method:"GET",
     })
-    console.log("修改成功");
-    
+    console.log("修改成功",res); 
   }
   async function Query (){
     let res = await fetch('http://localhost:3000/users/user/query',{
